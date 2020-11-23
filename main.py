@@ -1,7 +1,10 @@
+from vrcpy.errors import IncorrectLoginError
 from vrcpy.wss import WSSClient
 import atexit
 import sys
 import time
+from playsound import playsound
+from datetime import datetime
 
 username, password = '', ''
 
@@ -17,14 +20,28 @@ else:
 # Logs in the user and authorizes the API
 # Initialise vrcpy wrapper client and login with username + password
 client = WSSClient()
-client.login(username, password)
+try:
+    client.login(username, password)
+    print('Login Successful')
+except IncorrectLoginError:
+    print('Login Failed: Incorrect Username or Password.')
 #client.verify2fa("123456")
-
 
 # Runs when friend goes online
 @client.event
 def on_friend_online(friend):
-    print("{} is now online.".format(friend.displayName))
+    current_time = datetime.now().strftime("[%H:%M:%S] ")
+    try:
+        playsound('notification.mp3')
+    except:
+        pass
+    print(current_time + "{} is now online.".format(friend.displayName))
+
+# Runs when friend goes offline
+@client.event
+def on_friend_offline(friend):
+    current_time = datetime.now().strftime("[%H:%M:%S] ")
+    print(current_time + "{} is now offline.".format(friend.displayName))
 
 
 # Logs out the user and ceases connection with API
