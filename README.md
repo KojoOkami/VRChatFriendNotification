@@ -13,6 +13,9 @@ You will be able to specify specific friends you want to receive notifications f
         - Do not delete the quotation marks around your username and password
         - If you edit auto-start.bat you can run auto-start.bat in the future and not have to enter your username and password
 
+- Note: If you would like to change the notification sound, replace default_notification.mp3 with whatever sound you would like. Just make sure that the file is named default_notification.mp3
+- More configuration will be added in the future
+
 ## Contact me
 
 If you need help using the program or want to contact me for any reason casually you can message me on discord (Nekomata#0001) or for more professional reasons, you can contact me via email (kojookami@gmail.com)
